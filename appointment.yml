@@ -1,0 +1,25 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: appointment-service
+
+spec:
+  selector:
+    app: appointment
+  ports:
+    - port: 5678
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: appointment-app
+  labels:
+    app: appointment
+
+spec:
+  containers:
+    - name: appointment-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=Appointment Page"
+

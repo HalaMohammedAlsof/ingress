@@ -1,0 +1,25 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: payment-service
+
+spec:
+  selector:
+    app: payment
+  ports:
+    - port: 5678
+---    
+kind: Pod
+apiVersion: v1
+metadata:
+  name: payment-app
+  labels:
+    app: payment
+
+spec:
+  containers:
+    - name: payment-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=Payment Pege"
+
